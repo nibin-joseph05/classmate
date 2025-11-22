@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:classmate/core/theme/app_theme.dart';
+import 'package:classmate/features/auth/screens/login/login_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -79,7 +80,12 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const LoginScreen()),
+                    );
+                  },
                   child: const Text(
                     "Get Started",
                     style: TextStyle(

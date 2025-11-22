@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:classmate/features/welcome/welcome_screen.dart';
+import 'package:classmate/features/auth/screens/welcome/welcome_screen.dart';
 import 'package:classmate/core/theme/app_theme.dart';
 
 class SplashScreen extends StatefulWidget {
