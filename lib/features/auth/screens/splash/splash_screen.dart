@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
 import 'package:classmate/features/auth/screens/welcome/welcome_screen.dart';
 import 'package:classmate/core/theme/app_theme.dart';
+import 'package:classmate/features/home/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -32,11 +35,16 @@ class _SplashScreenState extends State<SplashScreen>
     _controller.forward();
 
     Future.delayed(const Duration(milliseconds: 1700), () {
+      final authBox = Hive.box('authBox');
+      final isLoggedIn = authBox.get('isLoggedIn', defaultValue: false);
+
+      final nextPage = isLoggedIn ? const HomeScreen() : const WelcomeScreen();
+
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
           transitionDuration: const Duration(milliseconds: 600),
-          pageBuilder: (_, __, ___) => const WelcomeScreen(),
+          pageBuilder: (_, __, ___) => nextPage,
           transitionsBuilder: (_, anim, __, child) {
             return FadeTransition(
               opacity: CurvedAnimation(

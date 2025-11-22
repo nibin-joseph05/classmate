@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:classmate/features/auth/services/firebase_auth_service.dart';
 import 'package:classmate/features/auth/screens/signup/signup_screen.dart';
 import 'package:classmate/features/auth/screens/success/success_screen.dart';
+import 'package:hive/hive.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -21,10 +22,16 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() => _loading = true);
 
     try {
+      final authBox = Hive.box('authBox');
+
       await _auth.login(
         _emailController.text.trim(),
         _passwordController.text.trim(),
       );
+
+      authBox.put('isLoggedIn', true);
+      authBox.put('email', _emailController.text.trim());
+
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Login Successful")),
