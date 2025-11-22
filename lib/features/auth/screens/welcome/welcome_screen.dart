@@ -48,10 +48,22 @@ class _WelcomeScreenState extends State<WelcomeScreen>
           padding: const EdgeInsets.symmetric(horizontal: 28),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              ClipOval(
+                child: Image.asset(
+                  "assets/logo/app-icon-new.png",
+                  width: 120,
+                  height: 120,
+                  fit: BoxFit.cover,
+                ),
+              ),
+
+              const SizedBox(height: 25),
+
               const Text(
                 "Welcome to ClassMate",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
@@ -62,6 +74,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
               Text(
                 "A simple and elegant way to manage student records.",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.grey.shade700,
