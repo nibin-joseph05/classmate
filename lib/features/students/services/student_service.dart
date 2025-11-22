@@ -38,4 +38,10 @@ class StudentService {
   Future<void> deleteStudent(String id) async {
     await studentsRef.doc(id).delete();
   }
+
+  /// Update student details
+  Future<void> updateStudent(String id, Student student) async {
+    await studentsRef.doc(id).update(student.toMap());
+  }
+
 }

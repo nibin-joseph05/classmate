@@ -14,8 +14,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
   final _auth = FirebaseAuthService();
+
   bool _loading = false;
 
   Future<void> _login() async {
@@ -31,7 +31,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
       authBox.put('isLoggedIn', true);
       authBox.put('email', _emailController.text.trim());
-
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Login Successful")),
@@ -53,18 +52,25 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade50,
+
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Image.asset(
-                  "assets/logo/app-icon-new.png",
-                  height: 120,
+                ClipOval(
+                  child: Image.asset(
+                    "assets/logo/app-icon-new.png",
+                    width: 120,
+                    height: 120,
+                    fit: BoxFit.cover,
+                  ),
                 ),
 
                 const SizedBox(height: 20),
+
                 Text(
                   "Welcome Back",
                   style: Theme.of(context).textTheme.headlineMedium,

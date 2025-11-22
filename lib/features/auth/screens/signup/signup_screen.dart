@@ -12,12 +12,10 @@ class _SignupScreenState extends State<SignupScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _auth = FirebaseAuthService();
-
   bool _loading = false;
 
   Future<void> _signup() async {
     setState(() => _loading = true);
-
     try {
       await _auth.signUp(
         _emailController.text.trim(),
@@ -33,25 +31,40 @@ class _SignupScreenState extends State<SignupScreen> {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.toString())));
     }
-
     setState(() => _loading = false);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade50,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
+
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Image.asset(
-                  "assets/logo/app-icon-new.png",
-                  height: 120,
+                ClipOval(
+                  child: Image.asset(
+                    "assets/logo/app-icon-new.png",
+                    width: 120,
+                    height: 120,
+                    fit: BoxFit.cover,
+                  ),
                 ),
 
                 const SizedBox(height: 20),
+
                 Text(
                   "Create Account",
                   style: Theme.of(context).textTheme.headlineMedium,
