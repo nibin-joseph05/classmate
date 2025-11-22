@@ -21,7 +21,7 @@ Add Student
 
 View Student List
 
-Edit Student Details (NEW)
+Edit Student Details 
 
 Delete Student
 
